@@ -1,0 +1,6 @@
+notpot show
+notpot add
+notpot del
+--all or -A
+--list or -L 
+ 
