@@ -1,4 +1,4 @@
-import mysql.connector as sql
+import mysql.connector as msql
 from colorama import Fore
 import socket
 import argparse
@@ -35,3 +35,11 @@ def check_internet_connection(): #check internet connection with google domain
     except OSError:
         return False
     
+
+
+
+#--------------------main------------------------------------
+
+dbconnection = msql.connect(host , user , passwd , database)
+cursor = dbconnection.cursor()
+
