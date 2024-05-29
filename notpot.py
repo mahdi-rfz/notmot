@@ -1,5 +1,7 @@
+import mysql.connector as sql
+from colorama import Fore
 import argparse
-import colorama
+import requests
 import time 
-import sql
-import tui
+import os
+
