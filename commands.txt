@@ -12,6 +12,7 @@ notmot restorecache {id} /--all
 
 table name = notmotinfo
 id | note | time | date | status | cache
+id , note , time , date , status , cache
 
 
 
