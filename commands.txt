@@ -11,8 +11,8 @@ notmot restorecache {id} /--all
 
 
 table name = notmotinfo
-id | note | time | date | status | cache
-id , note , time , date , status , cache
+id | note | time | date | status | cache | counter | counterpointer
+id , note , time , date , status , cache , counter , counterpointer
 
 
 
@@ -30,21 +30,3 @@ CREATE TABLE {table name NAME}(culomns name type)
 INSERT INTO {table name}(culomns name) VALUES (VALUES)
 SELECT * FROM {table name} WHERE or condition
 UPDATE {table name} SET id = 123 WHERE id = 122
-
-
-
-
-
-
-
-
-
-def switch_status_on_db(id , status):
-    try :
-        query = ("UPDATE human SET status = %s WHERE id = %s") #table name <--------------
-        values = (status , id)
-        cursor.execute(query , values)
-        database.commit()
-        return True
-    except Exception :
-        return False

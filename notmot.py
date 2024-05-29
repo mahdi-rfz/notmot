@@ -9,7 +9,7 @@ import os
 
 #Enter database information
 """
-datebase name =
+datebase name = notmotinfo
 table name = notinfo
 """
 #---------------------------
@@ -36,7 +36,8 @@ def check_internet_connection(): #check internet connection with google domain
         return False
     
 
-
+def check_server_connection():
+    pass
 
 #--------------------main connection------------------------------------
 database = mysql.connect(host = "localhost" , user = "root" , passwd = "admin", database = "notmotinfo")
@@ -44,16 +45,25 @@ cursor = database.cursor()
 
 #-----------------------------------------------------------------------
 
-def add_to_db(id , note , time , date , status , cache) :
-    try :
-        query = ("INSERT INTO notinfo(id , note , time , date , status , cache) VALUES(%s , %s , %s , %s , %s , %s)") #table name <---------------
-        values = (id , note , time , date , status , cache)
-        cursor.execute(query , values)
+def add_to_db(note, time, date, status, cache):
+    try:
+        cursor.execute("SELECT counter FROM notinfo WHERE counterpointer = 0")
+        current_counter = cursor.fetchone()[0] 
+        new_counter = int(current_counter) + 1  
+        
+        cursor.execute("UPDATE notinfo SET counter = %s , counter = %s WHERE counterpointer = a", (new_counter,new_counter))
+        
+
+        query = ("INSERT INTO notinfo (id , note, time, date, status, cache, counter, counterpointer) VALUES (%s , %s, %s, %s, %s, %s, 0 , 0)")
+        values = (str(current_counter) , str(note), str(time), str(date), str(status), str(cache))
+        cursor.execute(query, values)
+        
         database.commit()
         return True
-    except Exception as e :
+    except Exception as e:
         print(e)
         return False
+
     
     
 def del_from_db(id) :
@@ -114,11 +124,13 @@ def switch_cache_status_on_db(id , cache):
         return True
     except Exception :
         return False
+
+
+# id | note | time | date | status | cache | counter = 0 | counterpointer = 0  
     
-    
-# print(switch_cache_status_on_db(41 , 0))
+# print(switch_cache_status_on_db(5 , 1))
 # # print(show_cache_data_from_db())
-# # print(add_to_db(56 , 1234 , 44 , 4525323 , 1 , 1))
+print(add_to_db("go to market" , "12:25" , "23/2/2023" , "0" , "0" ))
 # print(del_from_db(56))
 # print(show_cache_data_from_db())
-# print(show_data_from_db())
+print(show_data_from_db())
