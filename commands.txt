@@ -1,0 +1,11 @@
+notmot add {message} 
+notmot del {id}
+notmot show {id} /--all /--cache 
+notmot update {id} -m{message}
+notmot delcache {id}/--all
+notmot complete {id} /--all
+notmot addcache {id} /--all
+notmot restorecache {id} /--all
+
+
+id | note | time | date | status | cache
