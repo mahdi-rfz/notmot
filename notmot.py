@@ -57,12 +57,13 @@ def add_to_db(id , note , time , date , status , cache) :
     
 def del_from_db(id) :
     try :
-        query = ("DELETE FROM notinfo WHERE id = %s") #table name <---------------
-        values = (id)
+        query = ("DELETE FROM notinfo WHERE id = %s and id = %s") #table name <---------------
+        values = (id , id) #im copy that bc sql have bug 
         cursor.execute(query , values)
         database.commit()
         return True
-    except Exception :
+    except Exception as e :
+        print(e)
         return False
     
 
@@ -112,5 +113,9 @@ def switch_cache_status_on_db(id , cache):
         return False
     
     
-# print(switch_cache_status_on_db(33 , 1))
+# print(switch_cache_status_on_db(41 , 0))
+# # print(show_cache_data_from_db())
+# # print(add_to_db(56 , 1234 , 44 , 4525323 , 1 , 1))
+# print(del_from_db(56))
 # print(show_cache_data_from_db())
+# print(show_data_from_db())
