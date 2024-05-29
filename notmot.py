@@ -51,7 +51,8 @@ def add_to_db(id , note , time , date , status , cache) :
         cursor.execute(query , values)
         database.commit()
         return True
-    except Exception :
+    except Exception as e :
+        print(e)
         return False
     
     
@@ -75,7 +76,8 @@ def show_data_from_db():
         for i in cursor :
             data.append(i)
         return data
-    except Exception :
+    except Exception as e :
+        print(e)
         return False
 
 
@@ -87,7 +89,8 @@ def show_cache_data_from_db():
         for i in cursor :
             data.append(i)
         return data
-    except Exception :
+    except Exception as e :
+        print(e)
         return False
 
 def switch_status_on_db(id , status):
