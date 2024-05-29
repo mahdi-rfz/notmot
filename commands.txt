@@ -2,10 +2,48 @@ notmot add {message}
 notmot del {id}
 notmot show {id} /--all /--cache 
 notmot update {id} -m{message}
-notmot delcache {id}/--all
 notmot complete {id} /--all
 notmot addcache {id} /--all
 notmot restorecache {id} /--all
 
 
+
+
+
+table name = notmotinfo
 id | note | time | date | status | cache
+
+
+
+
+
+
+
+
+
+
+QUERY :
+CREATE DATABASE {database name}
+SHOW DATABASES use for loop add database = "data base name" in connector
+CREATE TABLE {table name NAME}(culomns name type)
+INSERT INTO {table name}(culomns name) VALUES (VALUES)
+SELECT * FROM {table name} WHERE or condition
+UPDATE {table name} SET id = 123 WHERE id = 122
+
+
+
+
+
+
+
+
+
+def switch_status_on_db(id , status):
+    try :
+        query = ("UPDATE human SET status = %s WHERE id = %s") #table name <--------------
+        values = (status , id)
+        cursor.execute(query , values)
+        database.commit()
+        return True
+    except Exception :
+        return False
