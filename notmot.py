@@ -3,7 +3,7 @@ from colorama import Fore
 import socket
 import argparse
 import requests
-import time 
+import datetime 
 import os
 
 
@@ -36,34 +36,61 @@ def check_internet_connection(): #check internet connection with google domain
         return False
     
 
-def check_server_connection():
-    pass
+def check_server_connection(ip , port):
+        try:
+            sock = socket.create_connection((ip, port), timeout=2)
+            sock.close()
+            return True
+        except (socket.timeout, ConnectionRefusedError):
+            return False
+
+
+def date_and_time():
+    cu = datetime.datetime.now()
+    time = cu.strftime('%H:%M %p')
+    date = datetime.date.today()
+    
+    return [time , date]
+
+
 
 #--------------------main connection------------------------------------
 database = mysql.connect(host = "localhost" , user = "root" , passwd = "admin", database = "notmotinfo")
 cursor = database.cursor()
 
 #-----------------------------------------------------------------------
+def counter(): #counter for id 
+    try :
+        query = ("SELECT * FROM notinfo WHERE counterpointer = 2024")
+        cursor.execute(query)
+        for i in cursor :
+            (source) = i[6]
+        
+        query = ("UPDATE notinfo SET counter = %s WHERE counterpointer = %s")
+        
+        values = (str(int(source) + 1) , "2024")
+        cursor.execute(query , values)
+        database.commit()
+        
+        return source
+    except Exception as e :
+        print(e)
+        return False
+    
 
-def add_to_db(note, time, date, status, cache):
-    try:
-        cursor.execute("SELECT counter FROM notinfo WHERE counterpointer = 0")
-        current_counter = cursor.fetchone()[0] 
-        new_counter = int(current_counter) + 1  
-        
-        cursor.execute("UPDATE notinfo SET counter = %s , counter = %s WHERE counterpointer = a", (new_counter,new_counter))
-        
-
-        query = ("INSERT INTO notinfo (id , note, time, date, status, cache, counter, counterpointer) VALUES (%s , %s, %s, %s, %s, %s, 0 , 0)")
-        values = (str(current_counter) , str(note), str(time), str(date), str(status), str(cache))
-        cursor.execute(query, values)
-        
+def add_to_db(note , status , cache) :
+    try :
+        time = date_and_time()[0]
+        date = date_and_time()[1]
+        query = ("INSERT INTO notinfo(id , note , time , date , status , cache , counter , counterpointer) VALUES(%s , %s , %s , %s , %s , %s , 0 , 0)") #table name <---------------
+        id = counter()
+        values = (id , note , str(time) , str(date) , status , cache)
+        cursor.execute(query , values)
         database.commit()
         return True
     except Exception as e:
         print(e)
         return False
-
     
     
 def del_from_db(id) :
@@ -103,6 +130,7 @@ def show_cache_data_from_db():
         print(e)
         return False
 
+
 def switch_status_on_db(id , status):
     try :
         query = ("UPDATE notinfo SET status = %s WHERE id = %s") #table name <--------------
@@ -130,7 +158,7 @@ def switch_cache_status_on_db(id , cache):
     
 # print(switch_cache_status_on_db(5 , 1))
 # # print(show_cache_data_from_db())
-print(add_to_db("go to market" , "12:25" , "23/2/2023" , "0" , "0" ))
-# print(del_from_db(56))
+print(add_to_db("gym" , "1" , "0" ))
+# print(del_from_db(3))
 # print(show_cache_data_from_db())
 print(show_data_from_db())
