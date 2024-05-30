@@ -1,6 +1,8 @@
 import mysql.connector as mysql
 
-def step1():
+
+#creat database 
+def step1(): 
     connector = mysql.connect(host="localhost",
                               user="root",
                               passwd="admin")
@@ -10,6 +12,8 @@ def step1():
     cursor.close()
     connector.close()
 
+
+#creat table and culomns
 def step2():
     connector = mysql.connect(host="localhost",
                               user="root",
@@ -34,7 +38,7 @@ def step2():
 
     cursor.execute("""
         INSERT INTO notinfo (id, note, time, date, status, cache, counter, counterpointer)
-        VALUES (0, 'c', 'c', 'c', 'c', '2', '1', 'a')
+        VALUES (0, 'c', 'c', 'c', 'c', '2', '1', '2024')
     """)
     
     connector.commit()
@@ -44,4 +48,4 @@ def step2():
 step1()
 step2()
 
-print("created")
+print("::::::::::(Database was created)::::::::::")
