@@ -1,11 +1,15 @@
 import mysql.connector as mysql
+import datetime
 
+"""
+run this script on data base server
+"""
 
 #creat database 
 def step1(): 
-    connector = mysql.connect(host="localhost",
-                              user="root",
-                              passwd="admin")
+    connector = mysql.connect(host="46.4.156.37",
+                              user="user",
+                              passwd="password")
     
     cursor = connector.cursor()
     cursor.execute("CREATE DATABASE IF NOT EXISTS notmotinfo")
@@ -48,4 +52,7 @@ def step2():
 step1()
 step2()
 
-print("::::::::::(Database was created)::::::::::")
+cu = datetime.datetime.now()
+time = cu.strftime('%H:%M %p')
+    
+print(f"::::::::::(Database was created)::({time})::::::::::")
