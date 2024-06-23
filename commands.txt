@@ -1,13 +1,4 @@
-notmot add {message} 
-notmot del {id}
-notmot show {id} /--all /--cache 
-notmot update {id} -m{message}
-notmot complete {id} /--all
-notmot addcache {id} /--all
-notmot restorecache {id} /--all
-
-
-
+notmot add -N --note/ -P --plan /-S --show
 
 
 table name = notmotinfo
