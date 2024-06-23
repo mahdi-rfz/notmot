@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask , request
 
 app = Flask(__name__)
 
@@ -10,11 +10,11 @@ def show_planer():
 def show_note():
     pass
 
-@app.route("/api/add_plan" , methods = ["POST"])
+@app.route("/api/add_plan" , methods=["POST"])
 def add_plan():
     pass
 
-@app.route("/api/add_note" , methods = ["POST"])
+@app.route("/api/add_note" , methods=["POST"])
 def add_note():
     pass
 
