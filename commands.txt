@@ -1,4 +1,5 @@
 notmot add -N --note/ -P --plan /-S --show
+notmot delete -N --note {id}/ -P --plan {id}/-S --show {id}
 
 
 table name = notmotinfo
