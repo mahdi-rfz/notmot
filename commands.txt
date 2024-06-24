@@ -1,5 +1,9 @@
-notmot add -N --note/ -P --plan /-S --show
-notmot delete -N --note {id}/ -P --plan {id}/-S --show {id}
+notmot add / -N --note/ -P --plan /-S --show
+notmot delete / -N --note {id}/ -P --plan {id}/-S --show {id}
+notmot show / -N --note {id}/ -P --plan {id}/ -A --all (-N --note) , (-P --plan)
+notmot switch
+notmot
+notmot check
 
 
 table name = notmotinfo
