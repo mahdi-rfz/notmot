@@ -1,4 +1,4 @@
-from flask import Flask , request
+from flask import Flask , request , jsonify
 
 app = Flask(__name__)
 
@@ -10,13 +10,22 @@ def show_planer():
 def show_note():
     pass
 
-@app.route("/api/add_plan" , methods=["POST"])
-def add_plan():
-    pass
 
-@app.route("/api/add_note" , methods=["POST"])
-def add_note():
-    pass
+@app.route('/api/add_plan', methods=['POST'])
+def add_plan():
+    if "plan" not in request.form:
+        return jsonify({'error': 'No plan provided'}), 400
+    plan = request.form["plan"]
+    #write query
+
+
+@app.route('/api/add_note', methods=['POST'])
+def add_plan():
+    if "note" not in request.form:
+        return jsonify({'error': 'No plan provided'}), 400
+    note = request.form["note"]
+    #write query
+
 
 @app.route("/api/switch_status" , methods = ["POST"])
 def switch_status():
