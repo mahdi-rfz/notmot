@@ -64,14 +64,18 @@ def step3():
             time VARCHAR(50),
             date VARCHAR(50),
             status VARCHAR(50)
+            counter TEXT,
+            counterpointer VARCHAR(50)
         )
     """)
-
+    cursor.execute("""
+        INSERT INTO notinfo (id, note, time, date, counter, counterpointer)
+        VALUES (0, 'c', 'c', 'c', 'c', '1', '2024')
+    """)
     
     connector.commit()
     cursor.close()
     connector.close()
-    
     
     
     
