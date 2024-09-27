@@ -1,13 +1,24 @@
 import requests
 import configs
 
-url = "http://localhost:4444/notmot/addNote"
+url = "http://localhost:4444/notmot/listNote"
 
-data = {"username":"mahdi" , "password":"root" , "data":"my name is mahdi and welcome"}
+data = {"username":"mahdi" , "password":"root", "data":"my name is bahar and welcome"}
 
 respone = requests.post(url , data=data)
 
-print(type(respone.status_code))
+print((respone.text))
+
+
+
+
+
+
+
+
+
+
+
 
 
 def addNote(data):
